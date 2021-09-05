@@ -1,0 +1,15 @@
+{
+  "userbusbooking": [
+    {
+  
+      "mobile": 7339467878,
+      "busno": "TN541",
+      "busname": "Sundara Travels",
+      "totalfare": 350,
+      "numberofseats": 2,
+      "date": "2021-06-04",
+      "from": "Chennai",
+      "to": "Madurai"
+    }
+  ]
+}
