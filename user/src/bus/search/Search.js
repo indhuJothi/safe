@@ -30,11 +30,11 @@ class Search extends React.Component {
     this.showTable = this.showTable.bind(this);
   }
   showSource(e) {
-    {
+    
       this.setState({
         value: e.target.value,
       });
-    }
+    
   }
 
   ShowtoValue(e) {
@@ -126,6 +126,7 @@ class Search extends React.Component {
         .then((response) => response.data)
         .then((data) => {
           let { token } = data;
+          console.log(data)
           sessionStorage.setItem("busDetails", JSON.stringify(data));
           sessionStorage.setItem("date", this.state.dateVal);
           if (sessionStorage.getItem("busDetails")) {
@@ -177,7 +178,7 @@ class Search extends React.Component {
   }
 
   render() {
-    let from=[" "]
+    let from=[]
     this.state.fromData.map((elem)=>{
     
       from.push(elem.city)
@@ -186,6 +187,7 @@ class Search extends React.Component {
     let busDetails;
     let toVal;
     let data = this.state.busData;
+    
     busDetails = {
       NoOfSeats: data.NoOfSeats,
       busno: data.busno,
@@ -196,7 +198,9 @@ class Search extends React.Component {
       date: this.state.dateVal,
       type: data.type,
       button: data.button,
+      totalSeats:data.totalSeats
     };
+    sessionStorage.setItem("reservedSeats",JSON.stringify(data.bookedSeats))
 
     toVal = toList.filter((value) => {
       return value !== this.state.value;
@@ -208,26 +212,27 @@ class Search extends React.Component {
         <div class="searchContainer">
           <div class="FromCol">
             <label>
-              {" "}
               From{" "}
               <select
                 class="From"
                 value={this.state.value}
                 onChange={this.showSource}
+                
               >
+                <option value="" class="placeholder">From</option>
                   {from.map((from) => (
                   <option value={from.value}> {from === "" ? "" : from}</option>
                 ))}
               </select>
             </label>
             <label>
-              {""}
               To{""}
               <select
                 class="From"
                 value={this.state.tovalue}
                 onChange={this.ShowtoValue}
               >
+                <option value=""class="placeholder">To</option>
                 {toVal.map((to) => (
                   <option value={to.value}> {to === "" ? "" : to}</option>
                 ))}

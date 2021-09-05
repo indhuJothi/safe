@@ -14,23 +14,14 @@ router.post("/register", async (req, res, next) => {
   const userExsist = await user.findOne({ mobile: mobile });
   const salt = 10;
   const hashPassword = await bcrypt.hash(password, salt);
-  password = hashPassword;
-  
   if (userExsist) {
     res.send("User alredy exsit..");
   } else {
-   
        let length = await user.find({}).then(res=>{
          userId=res.length+1
-         console.log(userId)
-         console.log(typeof(userId))
        })
-     
-
-    
-    const userCreate = await user.create({ name, email, mobile,userId:userId,password})
+    const userCreate = await user.create({ name, email, mobile,userId:userId,password:hashPassword})
     if (userCreate) {
-      console.log(userCreate)
       res.status(200);
       res.json({
         _id: userCreate._id,
@@ -52,6 +43,7 @@ router.post("/login", async (req, res) => {
       .compare(password, userAuth.password)
       .then((result) => {
         if (result) {
+          
           const token = jwt.sign(
             { _id: userAuth._id },
             "secret",
@@ -69,7 +61,7 @@ router.post("/login", async (req, res) => {
         }
       })
       .catch((error) => {
-        res.send("error");
+        res.send("Not found");
       });
   } 
   else {
@@ -152,7 +144,7 @@ router.post("/search", async (req, res, next) => {
           if(response!==null)
           {
                busExsist.NoOfSeats = busExsist.NoOfSeats-response.noOfSeats
-               console.log(busExsist)
+               busExsist.bookedSeats=response.bookedSeats
                res.send(busExsist)
           }
           else{
@@ -202,9 +194,8 @@ router.put('/updateseatcount',verifyToken,(req,res)=>{
     if(response)
     {
       
-        bus.findOne({busno:busnum}).then(response=>{
+        bus.findOne({busno:busnum}).then( response=>{
         if(response){
-          console.log(response)
           let reduceCount = response.NoOfSeats - num
           bus.updateOne({busno:busnum},{$set:{NoOfSeats:reduceCount}}, (err) => {
             if (err) {
@@ -226,8 +217,6 @@ router.put('/updateseatcount',verifyToken,(req,res)=>{
 router.post('/bookedseats',verifyToken, async (req,res)=>{
   
    const busdetails = req.body
-   console.log(busdetails)
-  
   user.findOne({ _id: req._id }).then((response) => {
     if(response)
     {
@@ -235,16 +224,26 @@ router.post('/bookedseats',verifyToken, async (req,res)=>{
       {date:busdetails.bookedseats.date,
         busno:busdetails.bookedseats.busno
       }
-        ).then(response=>{
+        ).then( async response=>{
         if(response!==null)
         {
-          
+         
           let updateSeats = response.noOfSeats + parseInt(busdetails.bookedseats.seatsCount)
-          if(response.noOfSeats!=undefined){
-           seatsAvailability.updateOne({busno:busdetails.bookedseats.busno,date:busdetails.bookedseats.date},
-            {$set:{noOfSeats:updateSeats,bookedSeats:busdetails.bookedseats.reservedSeats}},(err,result)=>{
+          let bookedseats=busdetails.bookedseats.reservedSeats
+           if(response.noOfSeats!=undefined){
+            await seatsAvailability.updateOne(
+              {busno:busdetails.bookedseats.busno,
+                date:busdetails.bookedseats.date},
+              {$addToSet:{bookedSeats:bookedseats}
+              })
+            await seatsAvailability.updateOne(
+              {busno:busdetails.bookedseats.busno,
+                date:busdetails.bookedseats.date},
+              {$set:{noOfSeats:updateSeats}
+              },(err,result)=>{
               res.send("Sucess")
             })
+           
           }
          
         }
@@ -252,7 +251,8 @@ router.post('/bookedseats',verifyToken, async (req,res)=>{
           seatsAvailability.create({
            busno:busdetails.bookedseats.busno,
            noOfSeats:busdetails.bookedseats.seatsCount,
-           date:busdetails.bookedseats.date
+           date:busdetails.bookedseats.date,
+           bookedSeats:busdetails.bookedseats.reservedSeats
          }).then(result=>{
            res.send("success")
          })
@@ -265,7 +265,7 @@ router.post('/bookedseats',verifyToken, async (req,res)=>{
 })
 
 router.get('/getcities',verifyToken,(req,res)=>{
-  console.log('getCities')
+  
   user.findOne({_id:req._id}).then(response=>{
     if(response)
     {

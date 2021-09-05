@@ -23,9 +23,15 @@ class Ticket extends React.Component {
     this.goBack = this.goBack.bind(this);
   }
   submit() {
+  
     let bushistoryPushDetails
     let busDetails = JSON.parse(sessionStorage.getItem("busdetails"));
     let passengerName = JSON.parse(sessionStorage.getItem("PassengerName"));
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
     busDetails.NoOfSeats =busDetails.NoOfSeats - sessionStorage.getItem("seatcount");
     bushistoryPushDetails= {
       bookingHistoryId:this.state.userData.busDetails.length+1,
@@ -38,19 +44,14 @@ class Ticket extends React.Component {
       date: busDetails.date,
       from: busDetails.from,
       to: busDetails.to,
-     
-
-      
-};
+      bookedDate:today
+     };
   
     localStorage.setItem("reservedSeats",sessionStorage.getItem("seats"))
-    console.log(localStorage.reservedSeats)
-  
-    bushistory.userbusbooking.push(bushistoryPushDetails);
-    let setReservedseats = JSON.parse(sessionStorage.getItem("seats"));
+    bushistory.userbusbooking.push(bushistoryPushDetails)
     let userpushDetails;
     userpushDetails = {
-      // userbusbookingid: searchDetails.id,
+   
       name:passengerName ,
       mobile: this.state.userData.mobile
     };
@@ -59,14 +60,14 @@ class Ticket extends React.Component {
       isbool: false,
     });
     console.log(JSON.parse(localStorage.reservedSeats))
-    let bookedseats ={
+    let dataa= JSON.parse(sessionStorage.seats)
+     let bookedseats ={
+
     busno:busDetails.busno,
     date:busDetails.date,
     seatsCount:sessionStorage.getItem("seatcount"),
-    reservedSeats:JSON.parse(localStorage.reservedSeats)
-
-    
-  }
+    reservedSeats: dataa
+ }
     axios.post('http://localhost:5000/users/bookedseats',
     {
      bookedseats
@@ -77,7 +78,6 @@ class Ticket extends React.Component {
         "access-token":sessionStorage.getItem("authToken")
       }
     })
-    // this.updatehistory(bushistoryPushDetails)
     axios.post('http://localhost:5000/users/updatehistory',
     {busdata:bushistoryPushDetails},
     {
@@ -87,27 +87,8 @@ class Ticket extends React.Component {
       }
     })
     this.props.history.push('/user-history')
-    // axios.put('http://localhost:5000/users/updateseatcount',
-    //    {count:sessionStorage.getItem("seatcount"),
-    //      busnum:busDetails.busno
-    //     },
-    //      {
-    //   headers:{
-    //     "Content-type":"application/json",
-    //     "access-token":sessionStorage.getItem("authToken")
-    //   }
-    // })
+    window.location.reload(true)
   }
-
-  // updatehistory(bushistoryPushDetails)
-  // {
-  //   return axios.post('http://localhost:5000/users/updatehistory',{busdata:bushistoryPushDetails},{
-  //     headers:{
-  //       "Content-Type": "application/json",
-  //       "access-token":sessionStorage.getItem("authToken")
-  //     }
-  //   })
-  // }
 
   goBack() {
     this.props.history.goBack();

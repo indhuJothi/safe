@@ -66,10 +66,11 @@ class SeatList extends React.Component {
   render() {
     let busdocument = JSON.parse(sessionStorage.getItem("busdetails"));
     let seatsLength = [];
-    for (let i = 1; i <=busdocument.NoOfSeats; i++) {
+    for (let i = 1; i <=busdocument.totalSeats; i++) {
         
       seatsLength.push(i);
     }
+    console.log(sessionStorage.reservedSeats)
  
     return (
       <div>
@@ -80,10 +81,9 @@ class SeatList extends React.Component {
             GO BACK
           </button>
           {seatsLength.map((element, index) => {
-           
-            if(localStorage.getItem("reservedSeats"))
+            if(sessionStorage.getItem("reservedSeats"))
             {
-              if(JSON.parse(localStorage.reservedSeats).includes(element))
+              if(JSON.parse(sessionStorage.reservedSeats).includes(element))
               {
                 console.log(element)
               return (

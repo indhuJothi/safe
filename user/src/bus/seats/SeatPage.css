@@ -1,9 +1,11 @@
 .booktable {
   width: 300px;
-  margin-top: 80px;
-  margin-left: 500px;
+  margin-top: 100px;
+  margin-left: 550px;
   display: block;
-  background-color: white;
+  border-radius: 10px;
+  background-color:#E6F2FF;
+  box-shadow: 2px 0px 5px 10px #888888;
   text-align: center;
   justify-content: center;
   /* position: absolute; */

@@ -52,6 +52,10 @@ let columns = [
     heading: "Destination",
     property: "to",
   },
+  {
+    heading:"BookedDate",
+    property:"bookedDate"
+  }
 ];
 
 
@@ -103,9 +107,9 @@ class HistoryTable extends React.Component {
         <button class="historyback" onClick={(e)=>this.props.history.goBack()}>
           Back
         </button>
-        <button class="searchbtn" onClick={() => this.gotoSearch()}>
-          Search
-        </button>
+        
+        <input type="button" class="searchbtn" value="search" onClick={() => this.gotoSearch()}/>
+        
         <Menu />
 
         {go ? this.props.history.push("/search") : null}

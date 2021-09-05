@@ -1,6 +1,8 @@
 .body {
-  background-color: turquoise;
+  background-color:#B3B300;
+  box-shadow: 2px 0px 5px 10px #888888;
   position: fixed;
+  border-radius: 7px;
   top: 0;
   height: 10%;
   text-align: center;

@@ -1,9 +1,18 @@
 .searchbtn {
-  margin: 70px 600px;
-  display: block
+  width: 4px;
+  margin: 5px 0px;
+  font-size: 10px;
+  font-weight: bolder;
+  display: inline;
+  background-color:lavender;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 30;
 }
 
 
 .historyback{
-  margin:160px 600px
+  margin:250px 400px;
+  display:inline
 }

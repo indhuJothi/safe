@@ -1,7 +1,7 @@
 .searchContainer {
   display: inline-block;
   width: 40%;
-  margin: 50px 100px;
+  margin: 90px 100px;
   position: absolute;
 }
 
@@ -17,7 +17,8 @@
 .From {
   position: relative;
   width: 190px;
-  background-color: whitesmoke;
+  background-color:gainsboro;
+  border-radius: 30px;
   padding: 20px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -25,12 +26,14 @@
 .FromOption {
   font-size: medium;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  
 }
 .frominput {
   width: 190px;
   position: relative;
   margin: 1px 0;
-  background-color: whitesmoke;
+  border-radius: 30px;
+  background-color:gainsboro;
   padding: 17px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -40,7 +43,7 @@
   margin: 30px 0;
   background-color: whitesmoke;
   padding: 10px;
-  border-radius: 1%;
+  border-radius: 10%;
   height: 50px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;

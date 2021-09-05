@@ -10,7 +10,8 @@ const historySchema = new mongoose.Schema({
     numberofseats:Number,
     date:String,
     from:String,
-    to:String
+    to:String,
+    bookedDate:String
     
 })
 

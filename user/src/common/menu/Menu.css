@@ -14,8 +14,10 @@
   width: 160px;
   position: fixed;
   z-index: 1;
-  top: 55px;
+  top: 70px;
   left: 0;
-  background-color: #e6e6e6;
+  background-color:#f0f0f0;
   padding-top: 20px;
+  box-shadow: 2px 0px 5px 10px #888888;
+  border-radius: 5px;
 }

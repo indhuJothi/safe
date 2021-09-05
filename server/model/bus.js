@@ -8,6 +8,7 @@ const busSchema = new mongoose.Schema({
     type:String,
     totalSeats:Number,
     NoOfSeats:Number,
+    bookedSeats:[],
     button:Boolean
     
 })

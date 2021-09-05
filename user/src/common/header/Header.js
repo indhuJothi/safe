@@ -7,13 +7,13 @@ class Header extends React.Component {
   constructor(props)
   {
     super(props)
-    {
+    
       this.state={
         profile:false,
         // userData:[],
         logOut:false
       }
-    }
+    
   }
   // componentDidMount(){
   //   userAuthenticated().then((response)=>{

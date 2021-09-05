@@ -2,6 +2,7 @@
   width: 80%;
   margin: auto 30px;
   text-align: center;
+
 }
 .formheader {
   font-size: 24px;
@@ -38,14 +39,15 @@ input {
   justify-content: center;
 }
 .MainContainer {
-  margin: 100px 450px;
+  margin: 100px 430px;
   background-color: transparent;
   padding: 15px 50px 40px;
   text-align: center;
   border: 1px solid #ccc;
   top: 3px;
-  border-radius: 6px;
   width: 25%;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px 5px #b8a2a2;
 }
 .center {
   text-align: center;
