@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.css";
-import { userAuthenticated } from "../../service/api";
 import { Redirect, withRouter } from "react-router-dom";
 class Header extends React.Component {
 
@@ -10,19 +9,11 @@ class Header extends React.Component {
     
       this.state={
         profile:false,
-        // userData:[],
         logOut:false
       }
     
   }
-  // componentDidMount(){
-  //   userAuthenticated().then((response)=>{
-  //     this.setState({
-  //       userData:response.data
-  //     })
-      
-  //  })
-  // }
+
   setprofile()
   {
     this.setState({
@@ -43,7 +34,7 @@ class Header extends React.Component {
         </div>
         
         {sessionStorage.getItem("authToken") && (
-          <a class="logobut">
+          <span class="logobut">
             <span class="username">{sessionStorage.getItem("user")}</span>
             <span class="pro" onClick={(e) => this.setprofile()}>
               Profile
@@ -58,7 +49,7 @@ class Header extends React.Component {
             >
             <p>Logout</p>
             </button>
-          </a>
+          </span>
         ) }
         
         {this.state.logOut&&<Redirect to="/login"/>}

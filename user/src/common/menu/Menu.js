@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
-  Route,
   NavLink,
-  Switch,
+
 } from "react-router-dom";
 import "./Menu.css";
 import { withRouter } from "react-router";

@@ -1,18 +1,10 @@
 import React from "react";
 import "./LogReg.css";
-import validateLogin from "../../service/service";
-import { getPassword } from "../../service/service";
-import { getMobile } from "../../service/service";
-import { getUsername } from "../../service/service";
-import { getUseremail } from "../../service/service"
 import { Redirect, withRouter } from "react-router-dom";
 import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import '../../common/header/Header.css'
 import baseURL from '../../service/api'
-import Swal from "sweetalert2";
-
-
 
 
 class Login extends React.Component {
@@ -53,7 +45,6 @@ class Login extends React.Component {
 
   submit(e) {
     e.preventDefault();
-    let result, password, mobile, name, email;
     let mobileResult,passwordResult
     let mobileRegex = /^[6-9]\d{9}$/;
     let passRegex = /^[A-Za-z0-9@\s]{3,15}$/;
@@ -101,7 +92,7 @@ class Login extends React.Component {
        
         if(data !=="error" && data!=="Not found")
         {
-          console.log(data.user)
+          
         sessionStorage.setItem("authToken", token);
         sessionStorage.setItem("user",user)
          this.setState({
@@ -142,8 +133,6 @@ class Login extends React.Component {
   
   render() {
   
-    let user = this.props.isuserpass;
- 
     return (
       <div>
         <Header />
@@ -207,8 +196,6 @@ class Login extends React.Component {
           </form>
         )}
         {this.state.register && <Redirect to="/register"></Redirect> }
-        {/* {this.state.search && <Redirect to="/search" />} */}
-        {/* {this.state.search && user(this.state.password,this.state.userName, this.state.userEmail, this.state.mobile)} */}
       </div>
     );
   }

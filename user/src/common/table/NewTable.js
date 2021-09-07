@@ -5,11 +5,11 @@ class Table extends Component {
   constructor(props)
   {
     super(props)
-    {
+    
       this.state={
         show : false
       }
-    }
+    
   }
   showTable()
    {
@@ -22,17 +22,21 @@ class Table extends Component {
     let dataRows = [];
     // let length = this.props.data.length;
  
-    columns.forEach((col) => {
+    columns.forEach((col,index) => {
       headerRow.push(<th class="heading">{col.heading}</th>);
     });
 
-    data.forEach((item) => {
+    data.forEach((item,index) => {
       let dataCells = [];
 
       columns.forEach((col) => {
     
-        if(item[col.property]===undefined)
+        if(col.property==="bookingHistoryId")
         {
+          
+          dataRows.push(<td>{data.length-index}</td>)
+        }
+        else if(item[col.property]===undefined){
           dataRows.push(<td>-</td>)
         }
         else 

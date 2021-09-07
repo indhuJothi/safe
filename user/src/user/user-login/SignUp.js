@@ -1,6 +1,5 @@
 import React from "react";
 import "./LogReg.css";
-import data from "../../resources/user.json";
 import { Redirect, withRouter } from "react-router-dom";
 import Header from "../../common/header/Header";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -161,7 +160,7 @@ class SignUp extends React.Component {
         }
         this.registerUser(newUser)
         .then(response =>{
-              if(response.data=="User alredy exsit..")
+              if(response.data==="User alredy exsit..")
           {
             this.setState({
               alert:null,
@@ -186,7 +185,7 @@ class SignUp extends React.Component {
   }
 
 
-  registerUser(newUserDetails){
+registerUser(newUserDetails){
     let apiUrl = 'http://localhost:5000/users/register'
     return baseURL.post(apiUrl,newUserDetails,{
         headers:{

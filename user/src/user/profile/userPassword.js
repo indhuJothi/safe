@@ -11,7 +11,7 @@ import axios from "axios";
 class ChangePassword extends React.Component {
   constructor(props) {
     super(props);
-    {
+    
       this.state = {
         prevPassword: "",
         currentPassword: "",
@@ -22,7 +22,7 @@ class ChangePassword extends React.Component {
         prevPassErr:"",
         userData: [],
       };
-    }
+    
     this.updatePassword = this.updatePassword.bind(this);
   }
 

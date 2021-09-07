@@ -16,7 +16,7 @@ import ChangePassword from "../user/profile/userPassword"
 class RouteTable extends Component {
   constructor() {
     super();
-    {
+    
       this.state = {
         isUserLoggedin: false,
         password: "",
@@ -25,7 +25,7 @@ class RouteTable extends Component {
         mobile: "",
       };
       this.getPassword = this.getPassword.bind(this);
-    }
+    
   }
 
   getPassword(password, userName, email, mobile) {

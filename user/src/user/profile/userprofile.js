@@ -13,7 +13,7 @@ class Profile extends React.Component {
   static contextType = userContext;
   constructor(props) {
     super(props);
-    {
+    
       this.state = {
         isUpdate: true,
         name: "",
@@ -25,7 +25,7 @@ class Profile extends React.Component {
         isinputShow: false,
         userData:[]
        
-      };
+      
     }
     this.getForm = this.getForm.bind(this);
     this.getName = this.getName.bind(this);
@@ -87,13 +87,8 @@ class Profile extends React.Component {
 
   }
   render() {
-    console.log(this.state.userData.password)
-    let contextValue = this.context;
-    let userName = localStorage.getItem("name");
-    let userEmail = localStorage.getItem("email");
-    let userMobile = localStorage.getItem("mobile")
+    
     let isinputShow = this.state.isinputShow;
-    let isupdateData = this.state.isupdateData;
     let isUpdate = this.state.isUpdate;
 
     return (

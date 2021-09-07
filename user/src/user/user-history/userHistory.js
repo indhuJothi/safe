@@ -98,7 +98,6 @@ class HistoryTable extends React.Component {
   render() {
     
     let go = this.state.go;
-    console.log(this.state.history)
     let datalist = [...this.state.history].reverse()
     return (
       <>

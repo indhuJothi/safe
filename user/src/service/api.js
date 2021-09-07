@@ -18,6 +18,32 @@ export function userAuthenticated()
 }
 
 
+export function bookedSeats(busdetails){
+    return baseUrl.post('/users/bookedseats',
+        {busdetails},{
+    
+    headers:{
+        "access-token":sessionStorage.getItem("authToken")
+    }
+})
+}
+
+export function updateHistory(bushistoryPushDetails){
+    return baseUrl.post('/users/updatehistory',
+    {
+     
+         busdata:bushistoryPushDetails
+     }
+    ,
+    {
+headers:{
+    "access-token":sessionStorage.getItem("authToken")
+}
+})
+
+}
+
+
 
 
 

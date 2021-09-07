@@ -6,24 +6,25 @@ import { withRouter } from "react-router-dom";
 import Header from "../../common/header/Header";
 import userdata from '../../resources/userhistory.json'
 import { userAuthenticated } from "../../service/api";
+import { Redirect } from "react-router";
+import { bookedSeats } from "../../service/api";
+// import { updateHistory } from "../../service/api";
 import axios from 'axios'
-// import baseURL from '../../service/api'
+
 
 
 
 class Ticket extends React.Component {
   constructor() {
     super();
-    {
-      this.state = { isbool: true,
+    this.state = { isbool: true,
                      userData:[]
-                   };
-    }
+                  };
     this.submit = this.submit.bind(this);
     this.goBack = this.goBack.bind(this);
   }
+
   submit() {
-  
     let bushistoryPushDetails
     let busDetails = JSON.parse(sessionStorage.getItem("busdetails"));
     let passengerName = JSON.parse(sessionStorage.getItem("PassengerName"));
@@ -34,7 +35,7 @@ class Ticket extends React.Component {
     today = yyyy + "-" + mm + "-" + dd;
     busDetails.NoOfSeats =busDetails.NoOfSeats - sessionStorage.getItem("seatcount");
     bushistoryPushDetails= {
-      bookingHistoryId:this.state.userData.busDetails.length+1,
+      // bookingHistoryId:this.state.userData.busDetails.length,
       mobile: this.state.userData.mobile,
       userId: this.state.userData.userId,
       busno: busDetails.busno,
@@ -46,6 +47,15 @@ class Ticket extends React.Component {
       to: busDetails.to,
       bookedDate:today
      };
+
+    // if(this.state.userData.busDetails.includes(bushistoryPushDetails))
+    // {
+    //   bushistoryPushDetails.bookingHistoryId=this.state.userData.busDetails.length
+    // }
+    // else{
+    //   bushistoryPushDetails.bookingHistoryId=this.state.userData.busDetails.length+1
+    // }
+    // console.log(bushistoryPushDetails)
   
     localStorage.setItem("reservedSeats",sessionStorage.getItem("seats"))
     bushistory.userbusbooking.push(bushistoryPushDetails)
@@ -59,27 +69,32 @@ class Ticket extends React.Component {
     this.setState({
       isbool: false,
     });
-    console.log(JSON.parse(localStorage.reservedSeats))
     let dataa= JSON.parse(sessionStorage.seats)
-     let bookedseats ={
-
+    let bookedseats ={
     busno:busDetails.busno,
     date:busDetails.date,
     seatsCount:sessionStorage.getItem("seatcount"),
     reservedSeats: dataa
  }
-    axios.post('http://localhost:5000/users/bookedseats',
+
+//  axios.post('http://localhost:5000/users/bookedseats',
+//     {
+//      bookedseats
+//     },
+//      {
+//       headers:{
+//         "Content-type":"application/json",
+//         "access-token":sessionStorage.getItem("authToken")
+//       }
+//     })
+
+
+
+bookedSeats(bookedseats)
+  axios.post('http://localhost:5000/users/updatehistory',
     {
-     bookedseats
+      busdata:bushistoryPushDetails
     },
-     {
-      headers:{
-        "Content-type":"application/json",
-        "access-token":sessionStorage.getItem("authToken")
-      }
-    })
-    axios.post('http://localhost:5000/users/updatehistory',
-    {busdata:bushistoryPushDetails},
     {
       headers:{
         "Content-Type": "application/json",
@@ -87,24 +102,23 @@ class Ticket extends React.Component {
       }
     })
     this.props.history.push('/user-history')
-    window.location.reload(true)
+    
+    // window.location.reload(true)
   }
 
   goBack() {
     this.props.history.goBack();
   }
 
-   componentDidMount(){
+  componentDidMount(){
     userAuthenticated().then((response)=>{
       this.setState({
         userData:response.data
-      })
-      
+      })  
    })
    }
+
   render() {
-    let passenger;
-    let value
     let busDetails = JSON.parse(sessionStorage.getItem("busdetails"));
     let passengerName = JSON.parse(sessionStorage.getItem("PassengerName"));
     return (
@@ -121,7 +135,7 @@ class Ticket extends React.Component {
             Name:
             <span class="info1">
               {
-                (passenger = passengerName.map((elem, i) => {
+                (passengerName.map((elem, i) => {
                   return i + 1 + "." + elem + " ";
                 }))
               }
@@ -165,6 +179,9 @@ class Ticket extends React.Component {
           <br></br>
           <button onClick={this.submit}> proceed to pay</button>
         </div>
+        {/* {this.state.isbool===false&& window.location.reload(true)} */}
+        {/* {this.state.isbool===false?<Redirect to='/user-history'/>:null} */}
+    
       </div>
     );
   }

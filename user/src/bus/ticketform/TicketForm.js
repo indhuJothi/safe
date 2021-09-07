@@ -1,8 +1,6 @@
 import React from "react";
 import "./TicketForm.css";
 import "../buspage/BuslistTable.css";
-import userhistory from "../../resources/userhistory.json";
-import bushistory from "../../resources/bushistory.json";
 import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
@@ -16,7 +14,7 @@ class TicketForm extends React.Component {
 
   constructor(props) {
     super(props);
-    {
+    
       this.state = {
         name:  [],
         selectedOption: [],
@@ -25,7 +23,7 @@ class TicketForm extends React.Component {
         value: [],
         error: "",
       };
-    }
+    
     this.confirmPassengerDetails = this.confirmPassengerDetails.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
     this.goBack = this.goBack.bind(this);
@@ -56,7 +54,7 @@ class TicketForm extends React.Component {
 
   confirmPassengerDetails(event, index) {
     event.preventDefault();
-    if (this.state.name == "") {
+    if (this.state.name === "") {
       Swal.fire({
         icon: "error",
         title: "!",
@@ -104,7 +102,7 @@ componentDidMount()
     let busDetails = JSON.parse(sessionStorage.getItem("busdetails"));
     let amount =sessionStorage.getItem("seatcount") * busDetails.fare;
     let seats = JSON.parse(sessionStorage.getItem("seats"));
-    let userhistoryjson = userhistory;
+    
   
 
     return (
