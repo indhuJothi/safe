@@ -1,5 +1,5 @@
 let bus =require('../../model/bus')
-let seatsAvailability = require("../../model/seatAvailability");
+let seatsAvailability = require("../../model/seatAvailability")
 
 
 async function search(req, res){
