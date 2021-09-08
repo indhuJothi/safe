@@ -191,10 +191,13 @@ class Login extends React.Component {
                 <div>
                   <input type="submit" class="submitbtn"></input>
                 </div>
+                <br/>
+                Don't have an account? <a class="register" href="/register">Register here</a>
               </div>
             </div>
           </form>
         )}
+       
         {this.state.register && <Redirect to="/register"></Redirect> }
       </div>
     );

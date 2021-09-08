@@ -6,9 +6,6 @@ import { withRouter } from "react-router-dom";
 import Header from "../../common/header/Header";
 import userdata from '../../resources/userhistory.json'
 import { userAuthenticated } from "../../service/api";
-import { Redirect } from "react-router";
-import { bookedSeats } from "../../service/api";
-// import { updateHistory } from "../../service/api";
 import axios from 'axios'
 
 
@@ -28,6 +25,7 @@ class Ticket extends React.Component {
     let bushistoryPushDetails
     let busDetails = JSON.parse(sessionStorage.getItem("busdetails"));
     let passengerName = JSON.parse(sessionStorage.getItem("PassengerName"));
+    let reservedSeats= JSON.parse(sessionStorage.seats) 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -35,7 +33,7 @@ class Ticket extends React.Component {
     today = yyyy + "-" + mm + "-" + dd;
     busDetails.NoOfSeats =busDetails.NoOfSeats - sessionStorage.getItem("seatcount");
     bushistoryPushDetails= {
-      // bookingHistoryId:this.state.userData.busDetails.length,
+      // bookingHistoryId:this.state.userData.busDetails.length+1,
       mobile: this.state.userData.mobile,
       userId: this.state.userData.userId,
       busno: busDetails.busno,
@@ -45,19 +43,11 @@ class Ticket extends React.Component {
       date: busDetails.date,
       from: busDetails.from,
       to: busDetails.to,
-      bookedDate:today
+      bookedDate:today,
+      reservedSeats:reservedSeats
      };
 
-    // if(this.state.userData.busDetails.includes(bushistoryPushDetails))
-    // {
-    //   bushistoryPushDetails.bookingHistoryId=this.state.userData.busDetails.length
-    // }
-    // else{
-    //   bushistoryPushDetails.bookingHistoryId=this.state.userData.busDetails.length+1
-    // }
-    // console.log(bushistoryPushDetails)
-  
-    localStorage.setItem("reservedSeats",sessionStorage.getItem("seats"))
+ 
     bushistory.userbusbooking.push(bushistoryPushDetails)
     let userpushDetails;
     userpushDetails = {
@@ -69,28 +59,29 @@ class Ticket extends React.Component {
     this.setState({
       isbool: false,
     });
-    let dataa= JSON.parse(sessionStorage.seats)
-    let bookedseats ={
+   
+    
+
+    let busdetails ={
     busno:busDetails.busno,
     date:busDetails.date,
-    seatsCount:sessionStorage.getItem("seatcount"),
-    reservedSeats: dataa
- }
+    seatsCount:parseInt(sessionStorage.getItem("seatcount")),
+    reservedSeats: reservedSeats}
 
-//  axios.post('http://localhost:5000/users/bookedseats',
-//     {
-//      bookedseats
-//     },
-//      {
-//       headers:{
-//         "Content-type":"application/json",
-//         "access-token":sessionStorage.getItem("authToken")
-//       }
-//     })
-
+ axios.post('http://localhost:5000/users/bookedseats',
+    {
+     busdetails
+    },
+     {
+      headers:{
+        "Content-type":"application/json",
+        "access-token":sessionStorage.getItem("authToken")
+      }
+    })
 
 
-bookedSeats(bookedseats)
+
+
   axios.post('http://localhost:5000/users/updatehistory',
     {
       busdata:bushistoryPushDetails
@@ -103,7 +94,7 @@ bookedSeats(bookedseats)
     })
     this.props.history.push('/user-history')
     
-    // window.location.reload(true)
+    window.location.reload(true)
   }
 
   goBack() {

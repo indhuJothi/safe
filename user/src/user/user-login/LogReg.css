@@ -39,7 +39,7 @@ input {
   justify-content: center;
 }
 .MainContainer {
-  margin: 100px 430px;
+  margin: 100px 410px;
   background-color: transparent;
   padding: 15px 50px 40px;
   text-align: center;
@@ -60,6 +60,7 @@ input {
   width: 40%;
   margin: 2px 0px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .button:hover {
   background-color: violet;
@@ -79,4 +80,8 @@ input {
 
 .error {
   color: red;
+}
+
+.register{
+  left:0
 }

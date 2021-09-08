@@ -7,6 +7,7 @@ import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
 // import getuserHistory from '../../service/api'
 import axios from 'axios'
+import { bookedSeats } from "../../service/api";
 
 
 let columns = [
@@ -41,7 +42,7 @@ let columns = [
     property: "numberofseats",
   },
   {
-    heading: "Date",
+    heading: "DateofJourney",
     property: "date",
   },
   {
@@ -89,6 +90,9 @@ class HistoryTable extends React.Component {
         history:response.data
       })
     })
+  
+ 
+ 
    
   }
 

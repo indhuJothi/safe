@@ -2,8 +2,6 @@ import React from "react";
 import Header from "../../common/header/Header";
 import "./Search.css";
 import TableData from "../buspage/BuslistTable";
-import bushistoryjson from "../../resources/bushistory.json";
-import { getBusdetails } from "../../service/service";
 import Swal from "sweetalert2";
 import { userContext } from "../../context/Context";
 import Menu from "../../common/menu/Menu";
@@ -126,7 +124,6 @@ class Search extends React.Component {
         .then((response) => response.data)
         .then((data) => {
           let { token } = data;
-          console.log(data)
           sessionStorage.setItem("busDetails", JSON.stringify(data));
           sessionStorage.setItem("date", this.state.dateVal);
           if (sessionStorage.getItem("busDetails")) {
@@ -167,12 +164,9 @@ class Search extends React.Component {
         "access-token":sessionStorage.getItem("authToken")
       }
     }).then(response=>{
-      console.log(response)
-      console.log(response.data)
       this.setState({
         fromData:response.data
       })
-      console.log(this.state.fromData)
     })
     
   }

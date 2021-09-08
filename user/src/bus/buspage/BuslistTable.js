@@ -4,8 +4,7 @@ import "./BuslistTable.css";
 import Menu from "../../common/menu/Menu";
 import { withRouter } from "react-router";
 
-let storedBusdata;
-let getBusdata;
+
 let columns = [
   {
     heading: "Bus Name",
@@ -48,9 +47,9 @@ let columns = [
 class TableData extends Component {
   constructor(props) {
     super(props);
-    {
+    
       this.bookTicket = this.bookTicket.bind(this);
-    }
+    
   }
   bookTicket(isTrue) {
     if (isTrue) {
@@ -60,10 +59,10 @@ class TableData extends Component {
   }
 
   render() {
-    let busdatas = JSON.parse(sessionStorage.getItem("busDetails"));
     let bookTicket = this.bookTicket;
     let busData = this.props.busData;
-
+    let storedBusdata;
+    let getBusdata;
     if (sessionStorage.getItem("busDetails")) {
       storedBusdata = JSON.parse(sessionStorage.getItem("busDetails"));
       if (sessionStorage.getItem("busdetails")) {

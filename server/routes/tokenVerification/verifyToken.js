@@ -1,6 +1,8 @@
 let jwt = require("jsonwebtoken");
+
+
 function verifyToken(req, res, next) {
-    console.log("I am verifying")
+  
     let token = req.header("access-token");
     if (!token) {
       res.send("We need a token");

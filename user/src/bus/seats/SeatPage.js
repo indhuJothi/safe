@@ -34,7 +34,6 @@ class SeatList extends React.Component {
     }
     this.setState({ values: values });
     sessionStorage.setItem("seats", JSON.stringify(this.state.values));
-    console.log(this.state.values)
     sessionStorage.setItem("check",this.state.values)
   }
   validate(e) {
@@ -70,9 +69,8 @@ class SeatList extends React.Component {
         
       seatsLength.push(i);
     }
-    console.log(sessionStorage.reservedSeats)
- 
-    return (
+
+     return (
       <div>
         <Header/>
         <Menu />
@@ -85,7 +83,7 @@ class SeatList extends React.Component {
             {
               if(JSON.parse(sessionStorage.reservedSeats).includes(element))
               {
-                console.log(element)
+                
               return (
                 <label class="main">
                   <input
@@ -103,7 +101,6 @@ class SeatList extends React.Component {
               }
               else if (sessionStorage.getItem("seats")) {
                   let seatVal = JSON.parse(sessionStorage.getItem("seats"));
-                  console.log(sessionStorage.getItem("check").includes(element))
                   if(seatVal.includes(element))
                   {
                   return (

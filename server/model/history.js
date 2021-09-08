@@ -11,7 +11,8 @@ const historySchema = new mongoose.Schema({
     date:String,
     from:String,
     to:String,
-    bookedDate:String
+    bookedDate:String,
+    reservedSeats:[]
     
 })
 

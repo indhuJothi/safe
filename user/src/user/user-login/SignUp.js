@@ -264,6 +264,8 @@ registerUser(newUserDetails){
               <div>
                 <input type="submit" class="submitbtn"></input>
               </div>
+              <br></br>
+             <div> Already have an account?<a href="/login"> Login here</a></div>
             </div>
           </div>
         </form>
