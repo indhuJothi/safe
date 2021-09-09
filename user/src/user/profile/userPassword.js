@@ -33,7 +33,7 @@ class ChangePassword extends React.Component {
       <SweetAlert
         success
         title="!"
-        timeout="5000"
+        timeout="2000"
         onConfirm={() => this.hideAlert()}
       >
         As you changed your password, you are redirected to login page for
@@ -86,12 +86,17 @@ class ChangePassword extends React.Component {
   }
 
   hideAlert() {
-    sessionStorage.clear()
-    
+
+    setTimeout( ()=>{sessionStorage.clear()
     this.props.history.push("/");
     this.setState({
       alert: null,
-    });
+    })},2000)
+    // sessionStorage.clear()
+    // this.props.history.push("/");
+    // this.setState({
+    //   alert: null,
+    // });
   }
   componentDidMount() {
     userAuthenticated().then((response) => {
