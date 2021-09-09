@@ -86,7 +86,6 @@ class ChangePassword extends React.Component {
   }
 
   hideAlert() {
-
     setTimeout( ()=>{sessionStorage.clear()
     this.props.history.push("/");
     this.setState({
