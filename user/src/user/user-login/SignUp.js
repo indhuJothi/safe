@@ -13,7 +13,7 @@ class SignUp extends React.Component {
       userName: "",
       email: "",
       mobile: "",
-      password: " ",
+      password: "",
       confirmPassword: "",
       userNameErr: "",
       emailErr: "",
@@ -25,9 +25,6 @@ class SignUp extends React.Component {
       redirectLogin: false,
       userAlreadyExsist:null
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChange(event) {
@@ -60,17 +57,17 @@ class SignUp extends React.Component {
     let passwordRes = true;
     let confirmPassRes = true;
     let userNameres = true;
-    let nameRegex = /^[a-zA-Z\s]{3,15}$/;
-    let emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z.]+$/;
+    let nameRegex = /^[a-zA-z_\s]{4,20}$/;
+    let emailRegex = /^[a-zA-Z0-9+_.-]+@([a-zA-Z.]+\.)+[\w]{2,3}$/;
     let mobileRegex = /^[6-9]\d{9}$/;
-    let passRegex = /^[A-Za-z0-9@\s]{3,15}$/;
+    let passRegex = /^[A-Za-z0-9@\s]{5,15}$/;
     if (this.state.userName === "") {
       userNameres = true;
       this.setState({
         userNameErr: "Please Enter Your User Name",
       });
     } else {
-      if (nameRegex.test(this.state.name)) {
+      if (nameRegex.test(this.state.userName)) {
         userNameres = false;
         this.setState({
           userNameErr: " ",
@@ -78,11 +75,16 @@ class SignUp extends React.Component {
       } else {
         userNameres = true;
         this.setState({
-          userNameErr: "User Name Must Be between 3-15 Charachters",
+          userNameErr: "User Name Must Be between 5-15 Charachters",
         });
       }
     }
-
+    if(this.state.email===""){
+      emailRes=true
+      this.setState({
+        emailErr:"Please Enter Your Email"
+      })
+    }else{
     if (emailRegex.test(this.state.email)) {
       emailRes = false;
       this.setState({
@@ -94,6 +96,15 @@ class SignUp extends React.Component {
         emailErr: "Enter a valid email",
       });
     }
+  }
+  if(this.state.mobile==="")
+  {
+    mobileRes=true
+    this.setState({
+      mobileerr:"Please Enter Your Mobile Number"
+    })
+  }
+  else{
     if (mobileRegex.test(this.state.mobile)) {
       mobileRes = false;
       this.setState({
@@ -105,6 +116,14 @@ class SignUp extends React.Component {
         mobileerr: "Enter a valid mobile",
       });
     }
+  }
+   if(this.state.password===""){
+     passwordRes=true
+     this.setState({
+       passErr:"Please Enter Your Password"
+     })
+   }
+   else{
     if (passRegex.test(this.state.password)) {
       passwordRes = false;
       this.setState({
@@ -116,7 +135,8 @@ class SignUp extends React.Component {
         passErr: "Enter a valid password",
       });
     }
-    if (this.state.confirmPassword === " ") {
+  }
+    if (this.state.confirmPassword === "") {
       confirmPassRes = true;
       this.setState({
         confirmpassErr: "Please Enter Your Password",
@@ -138,16 +158,21 @@ class SignUp extends React.Component {
         emailRes ||
         mobileRes ||
         passwordRes ||
-        confirmPassRes) === false
+        confirmPassRes) ===false
     ) {
       const getAlert = () => (
-        <SweetAlert success title="!" onConfirm={() => this.hideAlert()}>
+        <SweetAlert success
+          confirmBtnStyle={{backgroundColor:"greenyellow",width:70,color:"purple",fontWeight:"bold"}}
+          onConfirm={() => this.hideAlert()}>
           You are signed in successfully
           <p>You can now Login</p>
         </SweetAlert>
       );
       const userAlert = () => (
-        <SweetAlert success title="!" onConfirm={() => this.hideAlert()}>
+        <SweetAlert warning 
+        confirmBtnStyle={{backgroundColor:"Red",width:70,color:"Black",fontWeight:"bold"}}
+        confirmBtnBsStyle ="warning"
+        onConfirm={() => this.hideAlert()}>
           User Already Exisit
           <p>You can Login</p>
         </SweetAlert>
@@ -186,7 +211,7 @@ class SignUp extends React.Component {
 
 
 registerUser(newUserDetails){
-    let apiUrl = 'http://localhost:5000/users/register'
+    let apiUrl = '/users/register'
     return baseURL.post(apiUrl,newUserDetails,{
         headers:{
             'Content-Type': 'application/json'
@@ -198,10 +223,10 @@ registerUser(newUserDetails){
     return (
       <div>
         <Header />
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e)=>this.handleSubmit(e)}>
           <div className="base-container">
             <div class="MainContainer center">
-              <button onClick={this.handleLogin} class="button">
+              <button onClick={(e)=>this.handleLogin(e)} class="button">
                 Login
               </button>
               <button class="button">
@@ -216,7 +241,7 @@ registerUser(newUserDetails){
                     type="text"
                     name="userName"
                     placeholder="User Name"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <div class="error">{this.state.userNameErr}</div>
                 </div>
@@ -226,7 +251,7 @@ registerUser(newUserDetails){
                     type="text"
                     name="email"
                     placeholder="xyz@domain.com"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <div class="error">{this.state.emailErr}</div>
                 </div>
@@ -236,7 +261,7 @@ registerUser(newUserDetails){
                     type="text"
                     name="mobile"
                     placeholder="MobileNo"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <div class="error">{this.state.mobileerr}</div>
                 </div>
@@ -246,7 +271,7 @@ registerUser(newUserDetails){
                     type="password"
                     name="password"
                     placeholder="Password"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <div class="error">{this.state.passErr}</div>
                 </div>
@@ -256,7 +281,7 @@ registerUser(newUserDetails){
                     type="password"
                     name="confirmPassword"
                     placeholder="confirm password"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.handleChange(e)}
                   />
                   <div class="error">{this.state.confirmpassErr}</div>
                 </div>
