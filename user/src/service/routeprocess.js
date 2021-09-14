@@ -9,54 +9,20 @@ import HistoryTable from "../user/user-history/userHistory";
 import Search from "../bus/search/Search";
 import Login from "../user/user-login/Login";
 import signUp from "../user/user-login/SignUp";
-import { userContext } from "../context/Context";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import ChangePassword from "../user/profile/userPassword"
 
 class RouteTable extends Component {
-  constructor() {
-    super();
-    
-      this.state = {
-        isUserLoggedin: false,
-        password: "",
-        userName: "",
-        email: "",
-        mobile: "",
-      };
-      this.getPassword = this.getPassword.bind(this);
-    
-  }
 
-  getPassword(password, userName, email, mobile) {
-    this.setState({
-      password: password,
-      userName: userName,
-      email: email,
-      mobile: mobile,
-    });
-  }
-  render() {
-    let getPassword = this.getPassword;
-    let password = this.state.password;
-    let userName = this.state.userName;
-    let email = this.state.email;
-    let mobile = this.state.mobile;
-    let userDetails = {
-      username: userName,
-      email: email,
-      mobile: mobile,
-      password: password,
-    };
+  render(){
     return (
-      <userContext.Provider value={userDetails}>
         <BrowserRouter>
           <Switch>
             <Route exact path="/">
               <Redirect to="/login"></Redirect>
             </Route>
             <Route path="/login">
-              <Login isuserpass={getPassword.bind(this)} />
+              <Login/>
             </Route>
             <Route exact path="/register" component={signUp} />
             <PrivateRoute path="/menu" component={Menu} />
@@ -69,7 +35,7 @@ class RouteTable extends Component {
             <PrivateRoute exact path='/password' component={ChangePassword}/>
           </Switch>
         </BrowserRouter>
-      </userContext.Provider>
+   
     );
   }
 }

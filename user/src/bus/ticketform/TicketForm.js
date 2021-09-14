@@ -1,7 +1,6 @@
 import React from "react";
 import "./TicketForm.css";
 import "../buspage/BuslistTable.css";
-import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
 import { withRouter } from "react-router";
@@ -9,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 class TicketForm extends React.Component {
-  static contextType = userContext;
+
 
   constructor(props) {
     super(props);

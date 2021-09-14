@@ -3,13 +3,12 @@ import Header from "../../common/header/Header";
 import "./Search.css";
 import TableData from "../buspage/BuslistTable";
 import Swal from "sweetalert2";
-import { userContext } from "../../context/Context";
 import Menu from "../../common/menu/Menu";
 import baseURL from "../../service/api";
 import axios from 'axios'
 
 class Search extends React.Component {
-  static contextType = userContext;
+  
   constructor() {
     super();
     this.state = {
@@ -123,7 +122,6 @@ class Search extends React.Component {
       this.search(searchDetails)
         .then((response) => response.data)
         .then((data) => {
-          let { token } = data;
           sessionStorage.setItem("busDetails", JSON.stringify(data));
           sessionStorage.setItem("date", this.state.dateVal);
           if (sessionStorage.getItem("busDetails")) {
@@ -174,8 +172,8 @@ class Search extends React.Component {
   render() {
     let from=[]
     this.state.fromData.map((elem)=>{
-    
       from.push(elem.city)
+      return true
     })
     const toList = from;
     let busDetails;

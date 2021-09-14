@@ -1,12 +1,12 @@
-const user = require('../../model/user')
+let user = require('../../model/user')
 let bcrypt = require("bcryptjs");
 
 async function register(req,res){
 
         let { name, email, mobile, password } = req.body;
         let userId;
-        let userExsist = await user.findOne({ mobile: mobile });
         let salt = 10;
+        let userExsist = await user.findOne({ mobile: mobile });
         let hashPassword = await bcrypt.hash(password, salt);
         if (userExsist) {
           res.send("User alredy exsit..");

@@ -1,14 +1,12 @@
 import React from "react";
 import "./LogReg.css";
 import { Redirect, withRouter } from "react-router-dom";
-import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import '../../common/header/Header.css'
 import baseURL from '../../service/api'
 
 
 class Login extends React.Component {
-  static contextType = userContext;
   constructor(props) {
     super(props);
     this.state = {

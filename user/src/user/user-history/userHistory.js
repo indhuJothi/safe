@@ -2,12 +2,10 @@ import React from "react";
 import Table from '../../common/table/NewTable';
 import "../../common/table/NewTable.css";
 import "./userHistory.css";
-// import { getBushistory } from "../../service/service";
 import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
-// import getuserHistory from '../../service/api'
 import axios from 'axios'
-import { bookedSeats } from "../../service/api";
+
 
 
 let columns = [

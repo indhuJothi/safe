@@ -4,31 +4,28 @@ import "./NewTable.css";
 class Table extends Component {
   constructor(props)
   {
-    super(props)
-    
+    super(props)  
       this.state={
         show : false
-      }
-    
+      }   
   }
+
   showTable()
    {
      this.setState({
        show :true
      })
    }
+
   buildTable = (columns, data) => {
     let headerRow = [];
     let dataRows = [];
-    // let length = this.props.data.length;
- 
-    columns.forEach((col,index) => {
+    columns.forEach((col) => {
       headerRow.push(<th class="heading">{col.heading}</th>);
     });
 
     data.forEach((item,index) => {
       let dataCells = [];
-
       columns.forEach((col) => {
     
         if(col.property==="bookingHistoryId")
@@ -62,7 +59,6 @@ class Table extends Component {
       </>
     );
     };
-
   render() {
     const { columns, data } = this.props;
     const bookticket=this.props.bookticket;
