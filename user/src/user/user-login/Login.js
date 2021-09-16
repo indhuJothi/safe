@@ -132,7 +132,7 @@ class Login extends React.Component {
   render() {
   
     return (
-      <div>
+      <div data-testid="test-login">
         <Header />
         {sessionStorage.getItem("authToken") ?
          (
@@ -187,7 +187,7 @@ class Login extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <input type="submit" class="submitbtn"></input>
+                  <input type="submit" data-testid="test-submit" class="submitbtn"></input>
                 </div>
                 <br/>
                 Don't have an account? <a class="register" href="/register">Register here</a>

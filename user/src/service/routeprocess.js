@@ -16,6 +16,7 @@ class RouteTable extends Component {
 
   render(){
     return (
+        <div>
         <BrowserRouter>
           <Switch>
             <Route exact path="/">
@@ -35,6 +36,8 @@ class RouteTable extends Component {
             <PrivateRoute exact path='/password' component={ChangePassword}/>
           </Switch>
         </BrowserRouter>
+        </div>
+        
    
     );
   }

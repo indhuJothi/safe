@@ -221,7 +221,7 @@ registerUser(newUserDetails){
 
   render() {
     return (
-      <div>
+      <div data-testid="test-signUp">
         <Header />
         <form onSubmit={(e)=>this.handleSubmit(e)}>
           <div className="base-container">

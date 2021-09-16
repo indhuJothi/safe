@@ -93,7 +93,6 @@ class Ticket extends React.Component {
       }
     })
     this.props.history.push('/user-history')
-    
     window.location.reload(true)
   }
 

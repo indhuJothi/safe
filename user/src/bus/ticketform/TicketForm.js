@@ -75,6 +75,8 @@ class TicketForm extends React.Component {
       });
       this.props.history.push('/ticket')
       window.location.reload(true)
+      
+      
      
     }
   

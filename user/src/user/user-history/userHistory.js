@@ -88,10 +88,6 @@ class HistoryTable extends React.Component {
         history:response.data
       })
     })
-  
- 
- 
-   
   }
 
   
