@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import {MemoryRouter} from 'react-router-dom'
-import {userEvent} from '@testing-library/user-event'
-import Login from './Login'
+import { fireEvent } from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import Login from './Login';
 
 test('renders learn react link', () => {
   render(
@@ -19,22 +20,35 @@ test('renders learn react link', () => {
   expect(password).toBeInTheDocument();
   expect(password).toHaveAttribute('type',"password");
   expect(password).toHaveValue('')
-
-  
 });
-
 
 
 test('renders learn react link', () => {
     render(
     <MemoryRouter>
+    <Login />
+    </MemoryRouter>
+    );
+    const mobileVal = screen.getByPlaceholderText(/MobileNo/i); 
+    const passwordVal = screen.getByPlaceholderText(/password/i);
+    expect(mobileVal.value).toBe("")
+    fireEvent.change(mobileVal,{target:{value:'7339467878'}})
+    expect(mobileVal.value).toBe('7339467878')
+    expect(passwordVal.value).toBe('')
+    fireEvent.change(passwordVal,{target:{value:"password@123"}})
+    expect(passwordVal.value).toBe('password@123')
+})
+   
+
+
+test('get snapshot', () => {
+    render(
+    <MemoryRouter>
     <Login/>
     </MemoryRouter>
     );
-    const submit = screen.getByTestId('test-submit')
-    expect(submit).toBeInTheDocument()
- 
-    // userEvent.type(screen.getByTestId('test-submit'))
-  
+  const val ='one'
+  const tree = renderer.create(<MemoryRouter><Login/></MemoryRouter>).toJSON();
+  expect(tree).toMatchSnapshot()
+  console.log(tree);
 })
-    

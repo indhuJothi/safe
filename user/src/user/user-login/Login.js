@@ -142,6 +142,7 @@ class Login extends React.Component {
             onSubmit={(e) => {
               this.submit(e);
             }}
+         
           >
             <div className="base-container">
               <div class="MainContainer center">
@@ -167,6 +168,7 @@ class Login extends React.Component {
                       type="text"
                       name="mobile"
                       placeholder="MobileNo"
+                      value={this.state.mobile}
                       onChange={(event) => {
                         this.handleChange(event);
                       }}
@@ -179,6 +181,7 @@ class Login extends React.Component {
                       type="password"
                       name="password"
                       placeholder="password"
+                      value={this.state.password}
                       onChange={(event) => {
                         this.handleChange(event);
                       }}

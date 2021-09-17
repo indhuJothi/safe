@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get snapshot 1`] = `
+<div
+  data-testid="test-login"
+>
+  <div>
+    <div
+      class="body"
+    >
+      <div
+        class="header"
+      >
+        <span
+          class="apptitle"
+        >
+          Bus Booking App
+        </span>
+      </div>
+    </div>
+  </div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="base-container"
+    >
+      <div
+        class="MainContainer center"
+      >
+        <button
+          class="button"
+        >
+          Login
+        </button>
+        <button
+          class="button"
+          onClick={[Function]}
+        >
+          Signup
+        </button>
+        <div
+          className="formheader"
+        >
+          Login
+        </div>
+        <p
+          class="error"
+        >
+          
+        </p>
+        <div
+          className="form"
+        >
+          <div>
+            <label
+              htmlFor="Mobile"
+            >
+              Mobile
+            </label>
+            <input
+              name="mobile"
+              onChange={[Function]}
+              placeholder="MobileNo"
+              type="text"
+              value=""
+            />
+            <div
+              class="error"
+            >
+              
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              name="password"
+              onChange={[Function]}
+              placeholder="password"
+              type="password"
+              value=""
+            />
+            <div
+              class="error"
+            >
+              
+            </div>
+          </div>
+        </div>
+        <div>
+          <input
+            class="submitbtn"
+            data-testid="test-submit"
+            type="submit"
+          />
+        </div>
+        <br />
+        Don't have an account? 
+        <a
+          class="register"
+          href="/register"
+        >
+          Register here
+        </a>
+      </div>
+    </div>
+  </form>
+</div>
+`;
