@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./NewTable.css";
 
-class Table extends Component {
+ class Table extends Component {
   constructor(props)
   {
     super(props)
@@ -23,7 +23,7 @@ class Table extends Component {
     // let length = this.props.data.length;
  
     columns.forEach((col,index) => {
-      headerRow.push(<th class="heading">{col.heading}</th>);
+      headerRow.push(<th className="heading">{col.heading}</th>);
     });
 
     data.forEach((item,index) => {
@@ -55,10 +55,10 @@ class Table extends Component {
     });
     return (
       <>
-        <thead class="thead">
-          <tr class="trow">{headerRow}</tr>
+        <thead className="thead">
+          <tr className="trow">{headerRow}</tr>
         </thead>
-        <tbody class="tbody">{dataRows}</tbody>
+        <tbody className="tbody">{dataRows}</tbody>
       </>
     );
     };

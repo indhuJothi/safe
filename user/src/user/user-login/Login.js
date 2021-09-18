@@ -1,14 +1,12 @@
 import React from "react";
 import "./LogReg.css";
 import { Redirect, withRouter } from "react-router-dom";
-import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import '../../common/header/Header.css'
 import baseURL from '../../service/api'
 
 
 class Login extends React.Component {
-  static contextType = userContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -81,11 +79,12 @@ class Login extends React.Component {
       mobile:parseInt(this.state.mobile),
       password: this.state.password,
     };
-     let data
+     
     if((mobileResult ===false) && (passwordResult===false))
     {
+    //  let data
      this.loginUser(newUserDetails)
-      .then((response) => data=response.data)
+      .then((response) =>response.data)
       .then((data) => {
         let token  = data.token;
         let user = data.user
@@ -134,7 +133,7 @@ class Login extends React.Component {
   render() {
   
     return (
-      <div>
+      <div data-testid="test-login">
         <Header />
         {sessionStorage.getItem("authToken") ?
          (
@@ -146,9 +145,9 @@ class Login extends React.Component {
             }}
           >
             <div className="base-container">
-              <div class="MainContainer center">
+              <div className="MainContainer center">
                 <button
-                  class="button"
+                  className="button"
                 >
                   Login
                 </button>
@@ -156,12 +155,12 @@ class Login extends React.Component {
                   onClick={(e) => {
                     this.handleSignup(e);
                   }}
-                  class="button"
+                  className="button"
                 >
                   Signup
                 </button>
                 <div className="formheader">Login</div>
-                <p class="error">{this.state.gotoRegister}</p>
+                <p className="error">{this.state.gotoRegister}</p>
                 <div className="form">
                   <div>
                     <label htmlFor="Mobile">Mobile</label>
@@ -173,7 +172,7 @@ class Login extends React.Component {
                         this.handleChange(event);
                       }}
                     />
-                    <div class="error">{this.state.mobileErr}</div>
+                    <div className="error">{this.state.mobileErr}</div>
                   </div>
                   <div>
                     <label htmlFor="password">Password</label>
@@ -185,14 +184,14 @@ class Login extends React.Component {
                         this.handleChange(event);
                       }}
                     />
-                    <div class="error">{this.state.passErr}</div>
+                    <div className="error">{this.state.passErr}</div>
                   </div>
                 </div>
                 <div>
-                  <input type="submit" class="submitbtn"></input>
+                  <input type="submit" className="submitbtn"></input>
                 </div>
                 <br/>
-                Don't have an account? <a class="register" href="/register">Register here</a>
+                Don't have an account? <a className="register" href="/register">Register here</a>
               </div>
             </div>
           </form>

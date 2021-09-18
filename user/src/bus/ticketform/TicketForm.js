@@ -1,15 +1,14 @@
 import React from "react";
 import "./TicketForm.css";
 import "../buspage/BuslistTable.css";
-import { userContext } from "../../context/Context";
 import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
 import { withRouter } from "react-router";
 import Swal from "sweetalert2";
 
 
-class TicketForm extends React.Component {
-  static contextType = userContext;
+ class TicketForm extends React.Component {
+
 
   constructor(props) {
     super(props);
@@ -108,26 +107,26 @@ componentDidMount()
       <div>
        <Header/>
         <Menu />
-        <div class="finalticket">
-          <button class="goback" onClick={this.goBack}>
+        <div className="finalticket">
+          <button className="goback" onClick={this.goBack}>
             GO BACK
           </button>
-          <form class="passengerform" onSubmit={this.confirmPassengerDetails}>
+          <form className="passengerform" onSubmit={this.confirmPassengerDetails}>
             {seats.map((element, index) => {
               return (
                 <span>
-                  <div class="form-input" key={index}>
+                  <div className="form-input" key={index}>
                     <div>
-                      <span class="passengerNo">Passenger:{index + 1}</span>
-                      <span class="seatno">SeatNo:{element}</span>
+                      <span className="passengerNo">Passenger:{index + 1}</span>
+                      <span className="seatno">SeatNo:{element}</span>
                     </div>
                     <br />
-                    <label for="name" class="pInfo">
+                    <label for="name" className="pInfo">
                       {" "}
                       Passenger Name:{" "}
                     </label>
                     <input
-                      class="inputname"
+                      className="inputname"
                       type="text"
                       name="name"
                       value={this.state.name[index]}
@@ -135,22 +134,22 @@ componentDidMount()
                     />
                     <span>{this.state.error}</span>
                     <div className="radio">
-                      <label class="pInfo">
+                      <label className="pInfo">
                         {" "}
                         Gender:
                         <br></br>
-                        <label class="pInfo">
+                        <label className="pInfo">
                           <input
-                            class="radio"
+                            className="radio"
                             type="radio"
                             value="Male"
                             onChange={this.onValueChange.bind(this, index)}
                           />
                           Male
                         </label>
-                        <label class="pInfo">
+                        <label className="pInfo">
                           <input
-                            class="radio"
+                            className="radio"
                             type="radio"
                             value="Female"
                             onChange={this.onValueChange.bind(this, index)}
@@ -159,22 +158,22 @@ componentDidMount()
                         </label>
                       </label>
                     </div>
-                    <label for="age" class="pInfo">
+                    <label for="age" className="pInfo">
                       Age
                       <input
                         type="text"
                         name="age"
                         value={this.state.age[index]}
                         onChange={this.handleAge.bind(this, index)}
-                        class="inputname"
+                        className="inputname"
                       />
                     </label>
                   </div>
                 </span>
               );
             })}
-            <span class="amount">TotalFare:{amount}</span>
-            <input type="submit" class="submit" />
+            <span className="amount">TotalFare:{amount}</span>
+            <input type="submit" className="submit" />
           </form>
         </div>
       </div>

@@ -7,7 +7,7 @@ import Header from "../../common/header/Header";
 import Menu from "../../common/menu/Menu";
 // import getuserHistory from '../../service/api'
 import axios from 'axios'
-import { bookedSeats } from "../../service/api";
+
 
 
 let columns = [
@@ -107,11 +107,11 @@ class HistoryTable extends React.Component {
       <>
         <Header />
         <Table columns={columns} data={datalist} />
-        <button class="historyback" onClick={(e)=>this.props.history.goBack()}>
+        <button className="historyback" onClick={(e)=>this.props.history.goBack()}>
           Back
         </button>
         
-        <input type="button" class="searchbtn" value="search" onClick={() => this.gotoSearch()}/>
+        <input type="button" className="searchbtn" value="search" onClick={() => this.gotoSearch()}/>
         
         <Menu />
 

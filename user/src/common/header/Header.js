@@ -28,26 +28,28 @@ class Header extends React.Component {
   render(){
   return (
     <div>
-      <div class="body">
-        <div class="header">
-          <span class="apptitle">Bus Booking App</span>
+      <div className="body">
+        <div className="header">
+          <span className="apptitle">Bus Booking App</span>
         </div>
         
         {sessionStorage.getItem("authToken") && (
-          <span class="logobut">
-            <span class="username">{sessionStorage.getItem("user")}</span>
-            <span class="pro" onClick={(e) => this.setprofile()}>
+          <span className="logobut">
+            <span className="username">{sessionStorage.getItem("user")}</span>
+            <span className="pro" onClick={(e) => {
+              e.preventDefault();
+              this.props.history.push('/profile')
+              }}>
               Profile
             </span>
-            {this.state.profile ? this.props.history.push('/profile') : null}
             <button
               onClick={(e) => {
                this.logOut()
                
               }}
-              class="signuplogo"
+              className="signuplogo"
             >
-            <p>Logout</p>
+            Logout
             </button>
           </span>
         ) }

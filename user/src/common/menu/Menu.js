@@ -15,9 +15,9 @@ class Menu extends Component {
         <div className="App">
           <Router>
             <ul>
-              <li class="li">
+              <li className="li">
                 <NavLink
-                  class="link"
+                  className="link"
                   activeStyle={{ color: "red" }}
                   to="/search"
                   onClick={()=>{this.props.history.push('/search')}}
@@ -25,9 +25,9 @@ class Menu extends Component {
                   Search
                 </NavLink>
               </li>
-              <li class="li">
+              <li className="li">
                 <NavLink
-                  class="link"
+                  className="link"
                   activeStyle={{ color: "red" }}
                   to="/user-history"
                   onClick={()=>{this.props.history.push('/user-history')}}

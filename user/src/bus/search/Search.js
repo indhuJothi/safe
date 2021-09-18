@@ -3,13 +3,11 @@ import Header from "../../common/header/Header";
 import "./Search.css";
 import TableData from "../buspage/BuslistTable";
 import Swal from "sweetalert2";
-import { userContext } from "../../context/Context";
 import Menu from "../../common/menu/Menu";
 import baseURL from "../../service/api";
 import axios from 'axios'
 
 class Search extends React.Component {
-  static contextType = userContext;
   constructor() {
     super();
     this.state = {
@@ -123,7 +121,6 @@ class Search extends React.Component {
       this.search(searchDetails)
         .then((response) => response.data)
         .then((data) => {
-          let { token } = data;
           sessionStorage.setItem("busDetails", JSON.stringify(data));
           sessionStorage.setItem("date", this.state.dateVal);
           if (sessionStorage.getItem("busDetails")) {
@@ -174,8 +171,7 @@ class Search extends React.Component {
   render() {
     let from=[]
     this.state.fromData.map((elem)=>{
-    
-      from.push(elem.city)
+      return from.push(elem.city)
     })
     const toList = from;
     let busDetails;
@@ -203,17 +199,17 @@ class Search extends React.Component {
       <div>
         <Header />
         <Menu />
-        <div class="searchContainer">
-          <div class="FromCol">
+        <div className="searchContainer">
+          <div className="FromCol">
             <label>
               From{" "}
               <select
-                class="From"
+                className="From"
                 value={this.state.value}
                 onChange={this.showSource}
                 
               >
-                <option value="" class="placeholder">From</option>
+                <option value="" className="placeholder">From</option>
                   {from.map((from) => (
                   <option value={from.value}> {from === "" ? "" : from}</option>
                 ))}
@@ -222,11 +218,11 @@ class Search extends React.Component {
             <label>
               To{""}
               <select
-                class="From"
+                className="From"
                 value={this.state.tovalue}
                 onChange={this.ShowtoValue}
               >
-                <option value=""class="placeholder">To</option>
+                <option value=""className="placeholder">To</option>
                 {toVal.map((to) => (
                   <option value={to.value}> {to === "" ? "" : to}</option>
                 ))}
@@ -236,13 +232,13 @@ class Search extends React.Component {
               Date
               <input
                 type="date"
-                class="frominput"
+                className="frominput"
                 placeholder="Date"
                 value={this.state.dateVal}
                 onChange={this.dateChange}
               ></input>
             </label>{" "}
-            <button class="buttonclass" onClick={this.showTable}>
+            <button className="buttonclass" onClick={this.showTable}>
               Search
             </button>
           </div>

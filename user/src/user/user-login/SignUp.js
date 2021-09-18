@@ -200,17 +200,17 @@ registerUser(newUserDetails){
         <Header />
         <form onSubmit={this.handleSubmit}>
           <div className="base-container">
-            <div class="MainContainer center">
-              <button onClick={this.handleLogin} class="button">
+            <div className="MainContainer center">
+              <button onClick={this.handleLogin} className="button">
                 Login
               </button>
-              <button class="button">
+              <button className="button">
                 Signup
               </button>
               <div className="formheader">Signup</div>
               <div className="form">
                 <div>
-                <p class="error">{this.state.userAlreadyExsist}</p>
+                <p className="error">{this.state.userAlreadyExsist}</p>
                   <label htmlFor="email">User Name</label>
                   <input
                     type="text"
@@ -218,7 +218,7 @@ registerUser(newUserDetails){
                     placeholder="User Name"
                     onChange={this.handleChange}
                   />
-                  <div class="error">{this.state.userNameErr}</div>
+                  <div className="error">{this.state.userNameErr}</div>
                 </div>
                 <div>
                   <label htmlFor="email">Email</label>
@@ -228,7 +228,7 @@ registerUser(newUserDetails){
                     placeholder="xyz@domain.com"
                     onChange={this.handleChange}
                   />
-                  <div class="error">{this.state.emailErr}</div>
+                  <div className="error">{this.state.emailErr}</div>
                 </div>
                 <div>
                   <label htmlFor="Mobile">Mobile</label>
@@ -238,7 +238,7 @@ registerUser(newUserDetails){
                     placeholder="MobileNo"
                     onChange={this.handleChange}
                   />
-                  <div class="error">{this.state.mobileerr}</div>
+                  <div className="error">{this.state.mobileerr}</div>
                 </div>
                 <div>
                   <label htmlFor="password">Password</label>
@@ -248,7 +248,7 @@ registerUser(newUserDetails){
                     placeholder="Password"
                     onChange={this.handleChange}
                   />
-                  <div class="error">{this.state.passErr}</div>
+                  <div className="error">{this.state.passErr}</div>
                 </div>
                 <div>
                   <label htmlFor="confirmPassword">Confirm Password</label>
@@ -258,11 +258,11 @@ registerUser(newUserDetails){
                     placeholder="confirm password"
                     onChange={this.handleChange}
                   />
-                  <div class="error">{this.state.confirmpassErr}</div>
+                  <div className="error">{this.state.confirmpassErr}</div>
                 </div>
               </div>
               <div>
-                <input type="submit" class="submitbtn"></input>
+                <input type="submit" className="submitbtn"></input>
               </div>
               <br></br>
              <div> Already have an account?<a href="/login"> Login here</a></div>

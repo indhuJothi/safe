@@ -8,7 +8,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import { userAuthenticated } from "../../service/api";
 import axios from "axios";
 
-class ChangePassword extends React.Component {
+ class ChangePassword extends React.Component {
   constructor(props) {
     super(props);
     
@@ -110,13 +110,13 @@ class ChangePassword extends React.Component {
       <div>
         <Menu />
         <Header />
-        <div class="profile">
+        <div className="profile">
           <>
-            <div class="profilepic">
-              <img class="profilelogo" alt="logo" src={logo}></img>
-              <div class="profileinfo">
-              <p class="error">{this.state.prevPassErr}</p>
-                <span class="info">
+            <div className="profilepic">
+              <img className="profilelogo" alt="logo" src={logo}></img>
+              <div className="profileinfo">
+              <p className="error">{this.state.prevPassErr}</p>
+                <span className="info">
                   Old Password:
                   <input
                     type="password"
@@ -125,15 +125,15 @@ class ChangePassword extends React.Component {
                     onChange={(e) =>
                       this.setState({ prevPassword: e.target.value })
                     }
-                    class="info1"
+                    className="info1"
                   ></input>
                 </span>
               </div>
               <form>
-                <span class="info">
+                <span className="info">
                   New Password:
                   <input
-                    class="info1"
+                    className="info1"
                     type="password"
                     name="currentPassword"
                     placeholder="Password to Update"
@@ -143,10 +143,10 @@ class ChangePassword extends React.Component {
                   />
                  
                 </span>
-                <span class="info">
+                <span className="info">
                   Re-Type New Password:
                   <input
-                    class="info1"
+                    className="info1"
                     type="password"
                     name="rePassword"
                     placeholder="Password to Update"
@@ -156,7 +156,7 @@ class ChangePassword extends React.Component {
                   />
                 </span>
               </form>
-              <p class="error">{this.state.passErr}</p>
+              <p className="error">{this.state.passErr}</p>
               {this.state.update
                 ? data.user.filter((element) => {
                     if (
@@ -166,9 +166,11 @@ class ChangePassword extends React.Component {
                         this.state.currentPassword !== "" &&
                         this.state.currentPassword !== this.state.prevPassword
                       ) {
-                        element.password = this.state.currentPassword;
+                        return element.password = this.state.currentPassword;
                       }
                     }
+                    
+                    return null
                   })
                 : null}
               {this.state.alert}

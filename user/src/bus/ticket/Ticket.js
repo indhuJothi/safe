@@ -33,7 +33,6 @@ class Ticket extends React.Component {
     today = yyyy + "-" + mm + "-" + dd;
     busDetails.NoOfSeats =busDetails.NoOfSeats - sessionStorage.getItem("seatcount");
     bushistoryPushDetails= {
-      // bookingHistoryId:this.state.userData.busDetails.length+1,
       mobile: this.state.userData.mobile,
       userId: this.state.userData.userId,
       busno: busDetails.busno,
@@ -67,6 +66,8 @@ class Ticket extends React.Component {
     date:busDetails.date,
     seatsCount:parseInt(sessionStorage.getItem("seatcount")),
     reservedSeats: reservedSeats}
+
+
 
  axios.post('http://localhost:5000/users/bookedseats',
     {
@@ -116,15 +117,15 @@ class Ticket extends React.Component {
       <div>
         <Header />
         <Menu />
-        <div class="ticket">
-          <button class="goBack" onClick={this.goBack}>
+        <div className="ticket">
+          <button className="goBack" onClick={this.goBack}>
             BACK
           </button>
           <h1>Booking Details</h1>
          <br></br>
-          <label class="info">
+          <label className="info">
             Name:
-            <span class="info1">
+            <span className="info1">
               {
                 (passengerName.map((elem, i) => {
                   return i + 1 + "." + elem + " ";
@@ -133,46 +134,43 @@ class Ticket extends React.Component {
             </span>
           </label>
           <br></br>
-          <label class="info">
-            Mobile:<span class="info1">{this.state.userData.mobile}</span>
+          <label className="info">
+            Mobile:<span className="info1">{this.state.userData.mobile}</span>
           </label>
           <br></br>
-          <label class="info">
-            Seatno:<span class="info1">{sessionStorage.getItem("seats")}</span>{" "}
+          <label className="info">
+            Seatno:<span className="info1">{sessionStorage.getItem("seats")}</span>{" "}
           </label>
           <br></br>
-          <label class="info">
-            Date:<span class="info1">{busDetails.date}</span>{" "}
+          <label className="info">
+            Date:<span className="info1">{busDetails.date}</span>{" "}
           </label>
           <br></br>
-          <label class="info">
+          <label className="info">
             Fare:
-            <span class="info1">
+            <span className="info1">
               {sessionStorage.getItem("seatcount") * busDetails.fare}
             </span>{" "}
           </label>
           <br></br>
-          <label class="info">
-            From:<span class="info1">{busDetails.from}</span>
+          <label className="info">
+            From:<span className="info1">{busDetails.from}</span>
           </label>
           <br></br>
-          <label class="info">
-            To:<span class="info1">{busDetails.to}</span>
+          <label className="info">
+            To:<span className="info1">{busDetails.to}</span>
           </label>
           <br></br>
-          <label class="info">
-            Bus No:<span class="info1"> {busDetails.busno}</span>
+          <label className="info">
+            Bus No:<span className="info1"> {busDetails.busno}</span>
           </label>
           <br></br>
-          <label class="info">
-            Bus name:<span class="info1"> {busDetails.busname}</span>
+          <label className="info">
+            Bus name:<span className="info1"> {busDetails.busname}</span>
           </label>
           <br></br>
           <button onClick={this.submit}> proceed to pay</button>
         </div>
-        {/* {this.state.isbool===false&& window.location.reload(true)} */}
-        {/* {this.state.isbool===false?<Redirect to='/user-history'/>:null} */}
-    
       </div>
     );
   }

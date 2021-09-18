@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        sessionStorage.getItem('authToken')!=undefined? <Component {...props} /> : <Redirect to="/login"/>
+        sessionStorage.getItem('authToken')!== undefined? <Component {...props} /> : <Redirect to="/login"/>
       }
     />
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { userContext } from "../../context/Context";
 import logo from "../../resources/signlogo.jpg";
 import "./userprofile.css";
 import Menu from "../../common/menu/Menu";
@@ -8,9 +7,7 @@ import { withRouter } from "react-router";
 import { userAuthenticated } from "../../service/api";
 import axios from "axios";
 
-
 class Profile extends React.Component {
-  static contextType = userContext;
   constructor(props) {
     super(props);
     
@@ -20,6 +17,9 @@ class Profile extends React.Component {
         email: "",
         pass: "",
         mobile: "",
+        error:"",
+        emailError:"",
+        mobileError:"",
         changePassword: false,
         isupdateData: true,
         isinputShow: false,
@@ -43,6 +43,58 @@ class Profile extends React.Component {
     });
   }
   updateUser(e) {
+    let updateName=true
+    let updateEmail=true
+    let updateMobile=true
+    let nameRegex = /^[a-zA-z_\s]{4,20}$/;
+    let emailRegex = /^[a-zA-Z0-9+_.-]+@([a-zA-Z.]+\.)+[\w]{2,3}$/;
+    let mobileRegex = /^[6-9]\d{9}$/;
+    if(this.state.name!==""){
+    if(nameRegex.test(this.state.name))
+    {
+      updateName=true
+      this.setState({
+        error:""
+      })
+    }
+    else{
+      updateName=false
+      this.setState({
+        error:"Please provide a valid name"
+      })
+    }
+  }
+  if(this.state.email!==""){
+    if(emailRegex.test(this.state.email)){
+      updateEmail=true
+      this.setState({
+        emailError:""
+      })
+    }
+    else{
+      updateEmail = false
+      this.setState({
+        emailError:"Provide a valid email"
+      })
+    }
+  }
+  if(this.state.mobile!==""){
+    if(mobileRegex.test(this.state.mobile))
+    {
+      updateMobile=true
+      this.setState({
+        mobileError:""
+      })
+    }
+    else{
+      updateMobile=false
+      this.setState({
+        mobileError:"Please provide a valid mobile"
+      })
+    }
+    
+  }
+  if((updateMobile && updateName && updateEmail)===true){
     this.setState({
       isupdateData: false,
       isinputShow: false,
@@ -62,6 +114,7 @@ class Profile extends React.Component {
       }
     })
   }
+  }
 
   getForm() {
     this.setState({
@@ -70,9 +123,8 @@ class Profile extends React.Component {
     });
   }
   close() 
-  {      //  window.location.reload(true)
-      this.props.history.goBack();
-    
+  {     
+      this.props.history.goBack(); 
   }
 
   componentDidMount()
@@ -96,10 +148,10 @@ class Profile extends React.Component {
         <div>
           <Menu />
           <Header />
-          <div class="profile">
+          <div className="profile">
             <>
-              <div class="profilepic">
-                <img class="profilelogo" alt="logo" src={logo}></img>
+              <div className="profilepic">
+                <img className="profilelogo" alt="logo" src={logo}></img>
               </div>
               <button onClick={this.getForm}>Edit</button>
               <button onClick={this.close}>Close</button>
@@ -110,71 +162,71 @@ class Profile extends React.Component {
               >
                 ChangePassword
               </button>
-              <div class="profiledetails">
+              <div className="profiledetails">
                 {isUpdate ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Name: <span class="info1">{this.state.userData.name}</span>
+                  <div className="profileinfo">
+                    <span className="info">
+                      Name: <span className="info1">{this.state.userData.name}</span>
                     </span>
                   </div>
                 ) : this.state.name === "" ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Name:<span class="info1">{this.state.userData.name}</span>
+                  <div className="profileinfo">
+                    <span className="info">
+                      Name:<span className="info1">{this.state.userData.name}</span>
                     </span>
                   </div>
                 ) : (
                   <div>
-                    <span class="info">
-                      Name:<span class="info1">{this.state.name}</span>
+                    <span className="info">
+                      Name:<span className="info1">{this.state.name}</span>
                     </span>
                   </div>
                 )}
                 {isUpdate ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Email:<span class="info1">{this.state.userData.email}</span>
+                  <div className="profileinfo">
+                    <span className="info">
+                      Email:<span className="info1">{this.state.userData.email}</span>
                     </span>
                   </div>
                 ) : this.state.email === "" ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Email:<span class="info1">{this.state.userData.email}</span>{" "}
+                  <div className="profileinfo">
+                    <span className="info">
+                      Email:<span className="info1">{this.state.userData.email}</span>{" "}
                     </span>
                   </div>
                 ) : (
                   <div>
-                    <span class="info">
-                      Email:<span class="info1">{this.state.email}</span>
+                    <span className="info">
+                      Email:<span className="info1">{this.state.email}</span>
                     </span>
                   </div>
                 )}
                 {isUpdate ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Mobile:<span class="info1">{this.state.userData.mobile}</span>
+                  <div className="profileinfo">
+                    <span className="info">
+                      Mobile:<span className="info1">{this.state.userData.mobile}</span>
                     </span>
                   </div>
                 ) : this.state.mobile === "" ? (
-                  <div class="profileinfo">
-                    <span class="info">
-                      Mobile:<span class="info1">{this.state.userData.mobile}</span>{" "}
+                  <div className="profileinfo">
+                    <span className="info">
+                      Mobile:<span className="info1">{this.state.userData.mobile}</span>{" "}
                     </span>
                   </div>
                 ) : (
                   <div>
-                    <span class="info">
-                      Mobile:<span class="info1">{this.state.mobile}</span>
+                    <span className="info">
+                      Mobile:<span className="info1">{this.state.mobile}</span>
                     </span>
                   </div>
                 )}
               </div>
             
-              <div class="updatedetails">
+              <div className="updatedetails">
                 {isinputShow ? (
                   <input
-                    class="inputdetail"
-                    defaultValue={this.state.userData.name}
+                    className="inputdetail"
+                    // defaultValue={this.state.userData.name}
                     type="text"
                     placeholder="Name to Upadte"
                     name="name"
@@ -184,8 +236,8 @@ class Profile extends React.Component {
                 <br></br>
                 {isinputShow ? (
                   <input
-                    class="inputdetail"
-                    defaultValue={this.state.userData.email}
+                    className="inputdetail"
+                    // defaultValue={this.state.userData.email}
                     type="text"
                     name="email"
                     placeholder="Email to Update"
@@ -195,8 +247,8 @@ class Profile extends React.Component {
                 <br></br>
                 {isinputShow ? (
                   <input
-                    class="inputdetail"
-                    defaultValue={this.state.userData.mobile}
+                    className="inputdetail"
+                    // defaultValue={this.state.userData.mobile}
                     type="text"
                     name="mobile"
                     placeholder="Mobile No to Update"
@@ -205,12 +257,15 @@ class Profile extends React.Component {
                 ) : null}
                 <br></br>
                 {isinputShow ? (
-                  <button class="inputbutton" onClick={this.updateUser}>
+                  <button className="inputbutton" onClick={this.updateUser}>
                     Save
                   </button>
                 ) : null}
               </div>
             </>
+            <p className="error">{this.state.error}</p>
+            <p className="error">{this.state.emailError}</p>
+            <p className="error">{this.state.mobileError}</p>
           </div>
         </div>
       </div>
@@ -219,3 +274,4 @@ class Profile extends React.Component {
 }
 
 export default withRouter(Profile);
+

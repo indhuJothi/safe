@@ -74,8 +74,8 @@ class SeatList extends React.Component {
       <div>
         <Header/>
         <Menu />
-        <div class="booktable">
-          <button class="back" onClick={this.goBack}>
+        <div className="booktable">
+          <button className="back" onClick={this.goBack}>
             GO BACK
           </button>
           {seatsLength.map((element, index) => {
@@ -85,16 +85,16 @@ class SeatList extends React.Component {
               {
                 
               return (
-                <label class="main">
+                <label className="main">
                   <input
                     type="checkbox"
                     checked="checked"
                     value={element}
                     
                   />
-                  <span class="checkmark">
-                    <span class="number">{element }</span>
-                    <img src={seat} alt="seat" class="seat"></img>
+                  <span className="checkmark">
+                    <span className="number">{element }</span>
+                    <img src={seat} alt="seat" className="seat"></img>
                   </span>
                 </label>
               );
@@ -104,16 +104,16 @@ class SeatList extends React.Component {
                   if(seatVal.includes(element))
                   {
                   return (
-                    <label class="main">
+                    <label className="main">
                       <input
                         type="checkbox"
                         checked="checked" 
                         value={element}
                         onClick={this.getValue.bind(this, index)}
                       />
-                      <span class="check">
-                        <span class="number">{element}</span>
-                        <img src={seat} alt="seat" class="seat"></img>
+                      <span className="check">
+                        <span className="number">{element}</span>
+                        <img src={seat} alt="seat" className="seat"></img>
                       </span>
                     </label>
                   );
@@ -121,15 +121,15 @@ class SeatList extends React.Component {
                   else
                   {
                 return (
-                      <label class="main">
+                      <label className="main">
                         <input
                           type="checkbox"
                           value={element}
                           onClick={this.getValue.bind(this, index)}
                         />
-                        <span class="checkmark check">
-                          <span class="number">{element}</span>
-                          <img src={seat} alt="seat" class="seat"></img>
+                        <span className="checkmark">
+                          <span className="number">{element}</span>
+                          <img src={seat} alt="seat" className="seat"></img>
                         </span>
                       </label>
                     );
@@ -139,15 +139,15 @@ class SeatList extends React.Component {
               else
               {
             return (
-                  <label class="main">
+                  <label className="main">
                     <input
                       type="checkbox"
                       value={element}
                       onClick={this.getValue.bind(this, index)}
                     />
-                    <span class="checkmark check">
-                      <span class="number">{element}</span>
-                      <img src={seat} alt="seat" class="seat"></img>
+                    <span className="checkmark">
+                      <span className="number">{element}</span>
+                      <img src={seat} alt="seat" className="seat"></img>
                     </span>
                   </label>
                 );
@@ -156,16 +156,16 @@ class SeatList extends React.Component {
             else if (sessionStorage.getItem("seats")) {
                 let seatVal = JSON.parse(sessionStorage.getItem("seats"));
                 return (
-                  <label class="main">
+                  <label className="main">
                     <input
                       type="checkbox"
                       checked={seatVal.includes(element) && "checked" }
                       value={element}
                       onClick={this.getValue.bind(this, index)}
                     />
-                    <span class="checkmark check">
-                      <span class="number">{element}</span>
-                      <img src={seat} alt="seat" class="seat"></img>
+                    <span className="checkmark">
+                      <span className="number">{element}</span>
+                      <img src={seat} alt="seat" className="seat"></img>
                     </span>
                   </label>
                 );
@@ -174,23 +174,23 @@ class SeatList extends React.Component {
             else
             {
           return (
-                <label class="main">
+                <label className="main">
                   <input
                     type="checkbox"
                     value={element}
                     onClick={this.getValue.bind(this, index)}
                   />
-                  <span class="checkmark check">
-                    <span class="number">{element}</span>
-                    <img src={seat} alt="seat" class="seat"></img>
+                  <span className="checkmark">
+                    <span className="number">{element}</span>
+                    <img src={seat} alt="seat" className="seat"></img>
                   </span>
                 </label>
               );
           }
           })}
           <br></br>
-          <span class="err">{this.state.error}</span>
-          <button type="submit" class="seatbutton" onClick={this.validate}>
+          <span className="err">{this.state.error}</span>
+          <button type="submit" className="seatbutton" onClick={this.validate}>
             Book Seats
           </button>
         </div>
