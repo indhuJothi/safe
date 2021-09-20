@@ -1,8 +1,35 @@
-import { render, screen } from '@testing-library/react';
+import { act, findByPlaceholderText, fireEvent,render, screen } from '@testing-library/react';
+import React from 'react';
 import {MemoryRouter} from 'react-router-dom'
-import { fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Login from './Login';
+import AxiosMock from 'axios'
+import {server} from './mocks/server'
+
+beforeAll(()=> server.listen({
+  onUnhandledRequest:'error'
+}))
+
+afterEach(()=>server.resetHandlers())
+
+afterAll(()=> server.close())
+
+
+
+
+
+
+describe('login',()=>{
+  test('check user', async()=>{
+    const {findAllByTestId} = render(
+      <MemoryRouter>
+        <Login/>
+      </MemoryRouter>
+    )
+      expect(await findByPlaceholderText('MobileNo')).toBeInTheDocument()
+  })
+
+})
 
 test('renders login component', () => {
   render(
@@ -51,4 +78,29 @@ test('get snapshot', () => {
   const tree = renderer.create(<MemoryRouter><Login/></MemoryRouter>).toJSON();
   expect(tree).toMatchSnapshot()
   console.log(tree);
+})
+
+
+
+test('login with mock data', async ()=>{
+
+
+  const wrapper =    render(
+  <MemoryRouter>
+    <Login/>
+    </MemoryRouter>
+
+  )
+
+  await wrapper.findAllByTestId('test-login');
+  const result = wrapper.getByTestId('submit')
+
+  result.act(()=>{
+    result.fireEvent.click()
+
+  })
+
+  
+
+
 })

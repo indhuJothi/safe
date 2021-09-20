@@ -262,7 +262,7 @@ registerUser(newUserDetails){
                 </div>
               </div>
               <div>
-                <input type="submit" className="submitbtn"></input>
+                <button type="submit" className="submitbtn">Submit</button>
               </div>
               <br></br>
              <div> Already have an account?<a href="/login"> Login here</a></div>

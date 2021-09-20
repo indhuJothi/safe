@@ -188,7 +188,7 @@ class Login extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <input type="submit" className="submitbtn"></input>
+                  <button type="submit" data-testid="submit" className="submitbtn">Submit</button>
                 </div>
                 <br/>
                 Don't have an account? <a className="register" href="/register">Register here</a>
