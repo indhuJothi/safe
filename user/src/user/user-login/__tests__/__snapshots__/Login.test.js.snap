@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login component testing get snapshot 1`] = `
+<div
+  data-testid="test-login"
+>
+  <div>
+    <div
+      className="body"
+    >
+      <div
+        className="header"
+      >
+        <span
+          className="apptitle"
+        >
+          Bus Booking App
+        </span>
+      </div>
+    </div>
+  </div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="base-container"
+    >
+      <div
+        className="MainContainer center"
+      >
+        <button
+          className="button"
+        >
+          Login
+        </button>
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Signup
+        </button>
+        <div
+          className="formheader"
+        >
+          Login
+        </div>
+        <p
+          className="error"
+        >
+          
+        </p>
+        <div
+          className="form"
+        >
+          <div>
+            <label
+              htmlFor="Mobile"
+            >
+              Mobile
+            </label>
+            <input
+              name="mobile"
+              onChange={[Function]}
+              placeholder="MobileNo"
+              type="text"
+            />
+            <div
+              className="error"
+            >
+              
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              name="password"
+              onChange={[Function]}
+              placeholder="password"
+              type="password"
+            />
+            <div
+              className="error"
+            >
+              
+            </div>
+          </div>
+        </div>
+        <div>
+          <input
+            className="submitbtn"
+            type="submit"
+          />
+        </div>
+        <br />
+        Don't have an account? 
+        <a
+          className="register"
+          href="/register"
+        >
+          Register here
+        </a>
+      </div>
+    </div>
+  </form>
+</div>
+`;

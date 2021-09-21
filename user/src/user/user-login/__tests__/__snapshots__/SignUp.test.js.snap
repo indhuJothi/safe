@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`get snapshot 1`] = `
+exports[`testing signup component get snapshot 1`] = `
 <div
-  data-testid="test-login"
+  data-testid="signUp"
 >
   <div>
     <div
@@ -30,28 +30,62 @@ exports[`get snapshot 1`] = `
       >
         <button
           className="button"
+          onClick={[Function]}
         >
           Login
         </button>
         <button
           className="button"
-          onClick={[Function]}
         >
           Signup
         </button>
         <div
           className="formheader"
         >
-          Login
+          Signup
         </div>
-        <p
-          className="error"
-        >
-          
-        </p>
         <div
           className="form"
         >
+          <div>
+            <p
+              className="error"
+            />
+            <label
+              htmlFor="email"
+            >
+              User Name
+            </label>
+            <input
+              name="userName"
+              onChange={[Function]}
+              placeholder="User Name"
+              type="text"
+            />
+            <div
+              className="error"
+            >
+              
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              name="email"
+              onChange={[Function]}
+              placeholder="xyz@domain.com"
+              type="text"
+            />
+            <div
+              className="error"
+            >
+              
+            </div>
+          </div>
           <div>
             <label
               htmlFor="Mobile"
@@ -79,7 +113,25 @@ exports[`get snapshot 1`] = `
             <input
               name="password"
               onChange={[Function]}
-              placeholder="password"
+              placeholder="Password"
+              type="password"
+            />
+            <div
+              className="error"
+            >
+              
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="confirmPassword"
+            >
+              Confirm Password
+            </label>
+            <input
+              name="confirmPassword"
+              onChange={[Function]}
+              placeholder="Confirm Password"
               type="password"
             />
             <div
@@ -96,13 +148,14 @@ exports[`get snapshot 1`] = `
           />
         </div>
         <br />
-        Don't have an account? 
-        <a
-          className="register"
-          href="/register"
-        >
-          Register here
-        </a>
+        <div>
+           Already have an account?
+          <a
+            href="/login"
+          >
+             Login here
+          </a>
+        </div>
       </div>
     </div>
   </form>

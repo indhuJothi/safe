@@ -196,7 +196,7 @@ registerUser(newUserDetails){
 
   render() {
     return (
-      <div>
+      <div data-testid="signUp">
         <Header />
         <form onSubmit={this.handleSubmit}>
           <div className="base-container">
@@ -255,7 +255,7 @@ registerUser(newUserDetails){
                   <input
                     type="password"
                     name="confirmPassword"
-                    placeholder="confirm password"
+                    placeholder="Confirm Password"
                     onChange={this.handleChange}
                   />
                   <div className="error">{this.state.confirmpassErr}</div>
