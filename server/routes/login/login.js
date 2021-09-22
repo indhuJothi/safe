@@ -2,7 +2,10 @@ let express = require("express");
 let user = require("../../model/user");
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
+let dotenv = require('dotenv')
+dotenv.config()
 
+let key = process.env.SECRET
 
 
 const login = async (req,res)=>{
@@ -16,7 +19,7 @@ const login = async (req,res)=>{
               if (result) {
                 let token = jwt.sign(
                   { _id: userAuth._id },
-                  "secret",
+                  key,
                   (err, token) => {
                     res.json({
                       token: token,
