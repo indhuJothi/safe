@@ -209,9 +209,9 @@ class Search extends React.Component {
                 onChange={this.showSource}
                 
               >
-                <option value="" className="placeholder">From</option>
-                  {from.map((from) => (
-                  <option value={from.value}> {from === "" ? "" : from}</option>
+                <option value="" key="" className="placeholder">From</option>
+                  {from.map((from,index) => (
+                  <option  key={index} value={from.value}> {from === "" ? "" : from}</option>
                 ))}
               </select>
             </label>
@@ -222,9 +222,9 @@ class Search extends React.Component {
                 value={this.state.tovalue}
                 onChange={this.ShowtoValue}
               >
-                <option value=""className="placeholder">To</option>
-                {toVal.map((to) => (
-                  <option value={to.value}> {to === "" ? "" : to}</option>
+                <option value="" key="" className="placeholder">To</option>
+                {toVal.map((to,index) => (
+                  <option key={index} value={to.value}> {to === "" ? "" : to}</option>
                 ))}
               </select>
             </label>

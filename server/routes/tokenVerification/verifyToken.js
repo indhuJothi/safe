@@ -1,4 +1,8 @@
 let jwt = require("jsonwebtoken");
+let dotenv = require('dotenv')
+dotenv.config()
+
+let key = process.env.SECRET
 
 
 function verifyToken(req, res, next) {
@@ -7,7 +11,7 @@ function verifyToken(req, res, next) {
     if (!token) {
       res.send("We need a token");
     } else {
-      jwt.verify(token, "secret", (err, decoded) => {
+      jwt.verify(token, key, (err, decoded) => {
         if (err) {
           res.send("credentials are not correct");
         } else {

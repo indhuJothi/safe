@@ -34,10 +34,10 @@ import "./NewTable.css";
         if(col.property==="bookingHistoryId")
         {
           
-          dataRows.push(<td>{data.length-index}</td>)
+          dataRows.push(<td >{data.length-index}</td>)
         }
         else if(item[col.property]===undefined){
-          dataRows.push(<td>-</td>)
+          dataRows.push(<td >-</td>)
         }
         else 
         {
