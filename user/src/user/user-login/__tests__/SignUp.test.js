@@ -19,6 +19,7 @@ describe("testing signup component", () => {
 
   test("checking the given fields in the document", () => {
     render(
+      
       <MemoryRouter>
         <SignUp />
       </MemoryRouter>
